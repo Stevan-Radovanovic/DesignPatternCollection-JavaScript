@@ -11,17 +11,27 @@ class Person {
   }
 }
 
-class Student extends Person {
-  constructor(name, age, weight, heigth) {
-    super(name, age, weight, heigth);
+class PersonDecorator {
+  constructor(person) {
+    this.person = person;
   }
 
   toString() {
-    console.log(this.name + " is a student");
+    this.person.toString();
   }
 }
 
-const person = new Person("Petar", 15, 63, 193);
-const student = new Student("Stevan", 22, 193, 72);
+class PersonDecoratorNobility extends PersonDecorator {
+  constructor(person) {
+    super(person);
+  }
+
+  toString() {
+    console.log(this.person.name + " is a NOBLE person");
+  }
+}
+
+const person = new Person("Stevan", 23, 72, 193);
+const noblePerson = new PersonDecoratorNobility(person);
 person.toString();
-student.toString();
+noblePerson.toString();
